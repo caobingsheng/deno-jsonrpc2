@@ -89,7 +89,7 @@ export class VSCodeStream implements MessageStream {
       await writeAll(this.#readBuf, data.slice(index));
     }
 
-    for (const l = this.#readBuf.length; l < contentLength;) {
+    while (this.#readBuf.length < contentLength) {
       await this.#readChunk();
     }
 
