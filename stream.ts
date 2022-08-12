@@ -109,7 +109,7 @@ export class VSCodeStream implements MessageStream {
       return new Failure(ErrNoDataReceived);
     }
 
-    await writeAll(this.#readBuf, received);
+    await writeAll(this.#readBuf, received.slice(0, readBytes));
     return new Success(readBytes);
   }
 }
